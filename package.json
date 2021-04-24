@@ -1,0 +1,24 @@
+{
+  "name": "poc-express-api-heroku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abusedmedia/poc-express-api-heroku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abusedmedia/poc-express-api-heroku/issues"
+  },
+  "homepage": "https://github.com/abusedmedia/poc-express-api-heroku#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3"
+  }
+}
