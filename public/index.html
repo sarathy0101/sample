@@ -5,6 +5,18 @@
     </head>
     <body>
         <p>Welcomee</p>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket=io()
+            socket.on("connect",()=>
+            {
+                console.log("conn")
+            })
+            socket.on('disconnect',()=>
+            {
+                console.log("disconnect the one")
+            })
+        </script>
     </body>
 
 </html>
