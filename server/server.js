@@ -11,10 +11,15 @@ app.use(express.static(publicPath))
 
 io.on('connection',(socket)=>
 {
-    console.log("a new one")
+    socket.emit('message','welcome to chat')
+    socket.broadcast.emit('message','A new user connected')
     socket.on('disconnect',(socket)=>
     {
-    console.log("disconnect the one")
+        io.emit('message','user disconnected')
+    })
+    socket.on('chatMessage',(message)=>
+    {
+        io.emit('message',message)
     })
 })
 
