@@ -1,0 +1,30 @@
+.message
+{
+    border:1px solid black;
+    background-color: blueviolet;
+    margin:10px;
+}
+.message p
+{
+   word-wrap:break-word;
+   line-height:110%;
+   display:inline;
+}
+#chat-messages
+{
+    height:70vh;
+    border:2px solid green; 
+    width:100vh;
+    background-color: #fed9ff;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+.chat-time
+{
+    font-size:x-small;
+}
+.chat-content
+{
+    color:#fed9ff;
+}

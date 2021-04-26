@@ -18,7 +18,9 @@ function displayMessage(message)
 {
     const divForMessage=document.createElement('div')
     divForMessage.classList.add('message')
-    divForMessage.innerHTML=`<p class="chat-content" style="word-wrap:break-word">${message}</p>`
+    divForMessage.innerHTML=`<p>${message.userName} <span class="chat-time">${message.time}</span></p>
+    <br/>
+    <p class="chat-content">${message.messageContent}</p>`
     document.querySelector('#chat-messages').appendChild(divForMessage)
 
 }
