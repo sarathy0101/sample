@@ -26,7 +26,7 @@ io.on('connection',(socket)=>
     {
         const user=currentUser(socket.id)
         exitUser(socket.id)
-        io.to(user.roomId).emit('message',formatMessage('FunChat Bot', user.userName +'disconnected'))
+        io.to(user.roomId).emit('message',formatMessage('FunChat Bot', user.userName +'disconnected!'))
     })
     socket.on('chatMessage',(message)=>
     {
