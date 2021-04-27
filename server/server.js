@@ -3,6 +3,7 @@ const http=require('http')
 const express=require('express')
 const socketIO=require('socket.io')
 const {formatMessage}=require('../utils/messages.js')
+const {addUser,currentUser,exitUser,getUserInRoom}=require('../utils/users.js')
 const publicPath=path.join(__dirname,'/../public')
 const port=process.env.PORT||3000
 let app=express();
@@ -12,15 +13,25 @@ app.use(express.static(publicPath))
 
 io.on('connection',(socket)=>
 {
-    socket.emit('message',formatMessage('FunChat Bot','welcome to chat'))
-    socket.broadcast.emit('message',formatMessage('FunChat Bot','A new user connected'))
-    socket.on('disconnect',(socket)=>
+    socket.on('userName',({userName,roomId})=>
     {
-        io.emit('message',formatMessage('FunChat Bot','user disconnected'))
+        const user=addUser(socket.id,userName,roomId)
+        socket.join(roomId)
+        this.userName=userName
+        socket.emit('message',formatMessage('FunChat Bot','welcome to chat'+this.userName))
+    socket.broadcast.to(roomId).emit('message',formatMessage('FunChat Bot','A new user -'+this.userName + ' connected'))
+    
+    })
+    socket.on('disconnect',()=>
+    {
+        const user=currentUser(socket.id)
+        exitUser(socket.id)
+        io.to(user.roomId).emit('message',formatMessage('FunChat Bot', user.userName +'disconnected'))
     })
     socket.on('chatMessage',(message)=>
     {
-        io.emit('message',formatMessage('FunChat Bot',message))
+        const user=currentUser(socket.id);
+        io.to(user.roomId).emit('message',formatMessage(user.userName,message))
     })
 })
 
