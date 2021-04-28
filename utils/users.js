@@ -19,8 +19,8 @@ function exitUser(id)
         users.splice(index,1)
     }
 }
-function getUserInRoom(roomId)
+function getUsersInRoom(roomId)
 {
     return users.filter(user=>user.roomId===roomId)
 }
-module.exports={addUser,currentUser,exitUser,getUserInRoom}
+module.exports={addUser,currentUser,exitUser,getUsersInRoom}

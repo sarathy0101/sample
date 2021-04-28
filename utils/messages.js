@@ -1,5 +1,5 @@
 const moment=require('moment')
-
+const messages=[]
 function formatMessage(userName,messageContent)
 {
     let date = new Date();
@@ -16,4 +16,15 @@ function formatMessage(userName,messageContent)
     }
 }
 
-module.exports={formatMessage}
+function addMessages(roomId,messageContent)
+{
+    const message={roomId,messageContent}
+    messages.push(message)
+}
+
+function oldMessages(roomId)
+{
+    return messages.filter((message)=>message.roomId==roomId)
+}
+
+module.exports={formatMessage,addMessages,oldMessages}
