@@ -18,7 +18,7 @@ io.on('connection',(socket)=>
         const user=addUser(socket.id,userName,roomId)
         socket.join(roomId)
         this.userName=userName
-        socket.emit('message',formatMessage('FunChat Bot','welcome to chat'+this.userName))
+        socket.emit('message',formatMessage('FunChat Bot','welcome to chat '+this.userName))
     socket.broadcast.to(roomId).emit('message',formatMessage('FunChat Bot','A new user -'+this.userName + ' connected'))
     
     })
@@ -26,12 +26,18 @@ io.on('connection',(socket)=>
     {
         const user=currentUser(socket.id)
         exitUser(socket.id)
+        if(user)
+        {
         io.to(user.roomId).emit('message',formatMessage('FunChat Bot', user.userName +'disconnected!'))
+        }
     })
     socket.on('chatMessage',(message)=>
     {
         const user=currentUser(socket.id);
+        if(user)
+        {
         io.to(user.roomId).emit('message',formatMessage(user.userName,message))
+        }
     })
 })
 
